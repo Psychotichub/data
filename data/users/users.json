@@ -1,0 +1,11 @@
+[
+  {
+    "id": "c6c20a28-df9b-4e4f-a74e-1403f65bbf1a",
+    "username": "admin",
+    "password": "$2b$10$0rOaibbizQL58lI0YJ.6kOyXTWYTZZ6vfnBgDBR6iA0giS2ynF/g.",
+    "email": "admin@psychoticdb.local",
+    "isAdmin": true,
+    "createdAt": "2025-04-25T21:10:30.813Z",
+    "lastLogin": null
+  }
+]

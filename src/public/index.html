@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PsychoticDB - MongoDB-like Personal Database</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <div class="logo">
+        <h1>PsychoticDB</h1>
+        <p class="subtitle">Personal MongoDB-like Database</p>
+      </div>
+      <div class="actions">
+        <button id="new-collection-btn" class="btn primary">New Collection</button>
+      </div>
+    </header>
+    
+    <main>
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <h2>Collections</h2>
+        </div>
+        <div class="collections-list" id="collections-list">
+          <!-- Collections will be loaded here -->
+          <div class="loading">Loading collections...</div>
+        </div>
+      </div>
+      
+      <div class="content">
+        <div class="content-header">
+          <h2 id="current-collection">No Collection Selected</h2>
+          <div class="collection-actions">
+            <button id="new-document-btn" class="btn" disabled>New Document</button>
+            <button id="delete-collection-btn" class="btn danger" disabled>Delete Collection</button>
+          </div>
+        </div>
+        
+        <div class="documents-container">
+          <div class="filter-bar">
+            <input type="text" id="filter-input" placeholder="Filter JSON (e.g. {&quot;name&quot;:&quot;value&quot;})" disabled>
+            <button id="filter-btn" class="btn" disabled>Filter</button>
+            <button id="reset-filter-btn" class="btn" disabled>Reset</button>
+          </div>
+          
+          <div id="documents-list" class="documents-list">
+            <div class="empty-state">
+              <p>Select a collection to view documents</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Modal for creating a new collection -->
+  <div id="new-collection-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Create New Collection</h2>
+        <button class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="new-collection-form">
+          <div class="form-group">
+            <label for="collection-name">Collection Name:</label>
+            <input type="text" id="collection-name" required>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Create</button>
+            <button type="button" class="btn cancel">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal for adding/editing a document -->
+  <div id="document-modal" class="modal">
+    <div class="modal-content wide">
+      <div class="modal-header">
+        <h2 id="document-modal-title">Add New Document</h2>
+        <button class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="document-form">
+          <div class="form-group">
+            <label for="document-content">Document JSON:</label>
+            <textarea id="document-content" rows="15" required></textarea>
+            <div id="json-error" class="error-message"></div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Save</button>
+            <button type="button" class="btn cancel">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal for confirming deletion -->
+  <div id="confirm-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Confirm Deletion</h2>
+        <button class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="confirm-message">Are you sure you want to delete this item?</p>
+        <div class="form-actions">
+          <button id="confirm-yes" class="btn danger">Yes, Delete</button>
+          <button id="confirm-no" class="btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="main.js"></script>
+</body>
+</html> 
